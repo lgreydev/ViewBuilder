@@ -27,10 +27,28 @@ struct AlertView<Content: View>: View {
     }
 
     var body: some View {
-        Text("Label")
+        VStack {
+            content
+                .padding()
+            HStack {
+                Button {
+                    let _ = print("Cancel")
+                } label: {
+                    Text("Cancel")
+                        .foregroundColor(.red)
+                        .bold()
+                }
+
+                Button {
+                    let _ = print("Confirm")
+                } label: {
+                    Text("Confirm")
+                        .bold()
+                }
+            }
+        }
     }
 }
-
 
 
 
