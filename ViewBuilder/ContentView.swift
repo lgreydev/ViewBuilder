@@ -11,13 +11,22 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                // Custom View
+                AlertView {
+                    Image(systemName: "exclamationmark.shield.fill")
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                    Text("Custom Alert!")
+                }
             }
             .navigationTitle("View Builder")
         }
     }
 }
 
+
+
+
+// MARK: Custom View
 struct AlertView<Content: View>: View {
 
     let content: Content
@@ -30,6 +39,9 @@ struct AlertView<Content: View>: View {
         VStack {
             content
                 .padding()
+
+            Divider().overlay(.white)
+
             HStack {
                 Button {
                     let _ = print("Cancel")
@@ -39,14 +51,22 @@ struct AlertView<Content: View>: View {
                         .bold()
                 }
 
+                Spacer()
+
                 Button {
                     let _ = print("Confirm")
                 } label: {
                     Text("Confirm")
+                        .foregroundColor(.white)
                         .bold()
                 }
             }
+            .padding()
         }
+        .frame(width: UIScreen.main.bounds.size.width/2)
+        .background(.blue)
+        .cornerRadius(7)
+        .padding()
     }
 }
 
